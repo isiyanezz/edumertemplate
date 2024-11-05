@@ -1,0 +1,228 @@
+---
+pagetitle: "EDUMER Template"
+Author: Equipo EDUMER
+bibliography: "../input/bib/merit-redis-school.bib"
+csl: "../input/bib/apa6.csl"
+lang: es
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
+      
+format:
+  revealjs:
+    #logo: images/edumer.png
+    slide-number: true
+    theme: "../libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+# data-background-image: images/cover.jpg
+# data-background-size: cover
+    auto-play-media: true
+  pdf:
+    format: beamer 
+    keep-tex: true  # Debug LaTeX output if needed
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+```
+
+```{r}
+#| label: packages
+#| include: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               sjmisc, 
+               sjPlot, 
+               sjlabelled, 
+               here,
+               kableExtra,
+               ggdist,
+               summarytools)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+
+```{r}
+#| label: data
+#| include: false
+
+load(url("https://github.com/educacion-meritocracia/market-justice-preferences-school/raw/refs/heads/main/input/data/mlm_models.RData"))
+load(url("https://github.com/educacion-meritocracia/market-justice-preferences-school/raw/refs/heads/main/input/data/dependientes.RData"))
+
+```
+
+
+::: columns
+::: {.column width="15%"}
+
+![](images/coes.png)
+
+
+
+![](images/edumer.png)
+
+
+:::
+
+::: {.column .column-right width="85%"}
+<br>
+
+## **Meritocracia y justicia de mercado**
+
+------------------------------------------------------------------------
+
+**Autores** Juan Carlos Castillo, Kevin Carrasco, Andreas Laffert
+
+##### Afiliaciones
+
+::: {.red2 .medium}
+
+**FONDECYT No. 1210847 "Meritocracia en la escuela: fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile"**
+
+:::
+
+XI Conferencia Internacional COES
+
+:::
+:::
+
+::: {.notes}
+Aquí mis notas
+:::
+
+
+# Contexto y motivación {.xlarge}
+
+
+
+
+## Antecedentes
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Los crecientes niveles de desigualdad económica y concentración de ingresos han impulsado en los últimos años la investigación sobre las preferencias por la redistribución económica, [@becker_2021; @rueda_Stegmueller_2019].
+
+- Sin embargo, hasta ahora la mayor parte de las investigaciones sobre preferencias redistributivas se han efectuado en población adulta, dejando de lado el estudio de los factores asociados a estas preferencias en edades más tempranas, así como también su formación. 
+
+-  Utilizando datos de la encuesta panel Educación y Meritocracia (N=900, año 2023-2024) de educación básica y media en Chile, el presente estudio ahonda en el cambio de las percepciones y preferencias de la meritocracia en la escuela y la sociedad sobre las preferencias por la redistribución.
+
+:::
+
+## Antecedentes
+
+
+#### Sobre meritocracia:
+
+- La meritocracia se concibe como un sistema donde las recompensas se distribuyen según el esfuerzo y el talento individual [@young_rise_1958]
+- La hipótesis central es que quienes perciban que existe más meritocracia en la escuela y en la sociedad, tenderán a mostrar menores preferencias por el rol del gobierno en la redistribución.
+
+:::
+
+## Operacionalización
+
+- La percepción de meritocracia escolar, asociada a que la inteligencia y el esfuerzo son relevantes para obtener buenas calificaciones en la escuela [@resh_sense_2010].
+- Medición de meritocracia en la sociedad: 
+ 1) La percepción de meritocracia: en qué medida se percibe que los esfuerzos y habilidades son recompensados en el país [@Andersen, Lue Kessing, y Østergaard 2021; @castillo_meritocracia_2019; @mijs_paradox_2019].
+ 2) Las preferencias por la meritocracia: en qué medida la meritocracia es deseada en la sociedad [@castillo_multidimensional_2023].
+
+:::
+:::::
+
+## Hipótesis
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+$H_{1}$  Estudiantes que presentan mayor percepción de meritocracia en la escuela tendrán menor preferencia por la redistribución.
+
+$H_{2}$ Estudiantes que presentan mayor percepción de meritocracia en la sociedad tendrán menor preferencia por la redistribución.
+
+$H_{3}$ Estudiantes que presentan mayor preferencia por la meritocracia en la sociedad tendrán menor preferencia por la redistribución.
+
+$H_{4}$ Estudiantes de educación media tendrán menor preferencia por la redistribución que estudiantes de educación básica.
+
+$H_{5}$ A medida que los/as estudiantes avanzan en su escolarización, se espera que las preferencias por la redistribución disminuyan.
+
+::: 
+
+# Datos, variables y métodos {.xlarge}
+
+## Datos
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+-   La base de datos a utilizar corresponde a la encuesta panel “Educación y Meritocracia” (EDUMER), realizada en Chile durante el 2023 y 2024. 
+- En este estudio se evaluaron estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región metropolitana. El N total de respuestas completas es de 902 estudiantes. 
+- La variable dependiente de preferencias redistributivas fue medida a partir de la pregunta “El gobierno de Chile debería hacer algo para reducir las brechas de ingresos entre ricos y pobres”, con una escala likert de 4 categorías desde “Muy en desacuerdo” a “Muy de acuerdo”.
+:::
+
+# Variables
+
+## ![](images/variables.PNG)
+    
+:::
+
+## Métodos
+
+- Análisis cuantitativo mediante modelos de regresión lineal.
+
+
+# Resultados {.xlarge }
+
+
+## Modelos 
+::: {style="font-size: 100%;"}
+
+```{r}
+#| label: fig-lineal-reg
+#| fig-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
+#| fig-cap-location: top
+#| fig-align: center
+#| out-width: '80%'
+#| echo: false
+#| warning: false
+#| message: false
+#| results: asis
+
+theme_set(theme_ggdist())
+
+sjPlot::plot_model(model = reg1_bienestar, show.values = T, show.p = T)
+
+```
+
+:::
+
+# Discusión y conclusiones {data-background-color="#5f5758"}
+
+
+# Discusión y conclusiones {data-background-color="#5f5758"}
+
+::: { .incremental .highlight-last2 style="font-size: 100%;"}
+
+- Discusión 
+
+  - Conclusión
+:::
+
+
+# Gracias por su atención! 
+
+-   **Github del proyecto:** <https://github.com/educacion-meritocracia>
+
+## Referencias
