@@ -1,7 +1,7 @@
 ---
 pagetitle: "EDUMER Template"
 Author: Equipo EDUMER
-bibliography: "../input/bib/refs.bib"
+bibliography: "../input/bib/merit-redis-school.bib"
 csl: "../input/bib/apa6.csl"
 lang: es
 
@@ -85,11 +85,11 @@ load(url("https://github.com/educacion-meritocracia/market-justice-preferences-s
 ::: {.column .column-right width="85%"}
 <br>
 
-## **Mi increíble presentación**
+## **Meritocracia y justicia de mercado**
 
 ------------------------------------------------------------------------
 
-**Autores**
+**Autores** Juan Carlos Castillo, Kevin Carrasco, Andreas Laffert
 
 ##### Afiliaciones
 
@@ -99,7 +99,7 @@ load(url("https://github.com/educacion-meritocracia/market-justice-preferences-s
 
 :::
 
-Conferencia X
+XI Conferencia Internacional COES
 
 :::
 :::
@@ -118,34 +118,30 @@ Aquí mis notas
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
-- The justification of social inequality based on market-type criteria has been conceptualized as the individuals' adherence to the deservingness of social goods and services (such as health, education, and pensions) based on prices and individuals' ability to pay [@boltanski_new_2005; @lane_market_1986; @streeck_citizens_2012].
+- Los crecientes niveles de desigualdad económica y concentración de ingresos han impulsado en los últimos años la investigación sobre las preferencias por la redistribución económica, [@becker_2021; @rueda_Stegmueller_2019].
 
-- Research on social stratification beliefs [@kluegel_beliefs_1987], highlights that people's explanations and justifications of social inequality are closely tied to their judgments of deservingness. 
+- Sin embargo, hasta ahora la mayor parte de las investigaciones sobre preferencias redistributivas se han efectuado en población adulta, dejando de lado el estudio de los factores asociados a estas preferencias en edades más tempranas, así como también su formación. 
 
--  The expansion of marketization has been related to a larger justification of market mechanisms, whereby societies with larger private spending on services show larger market justice preferences [@lindh_public_2015].
+-  Utilizando datos de la encuesta panel Educación y Meritocracia (N=900, año 2023-2024) de educación básica y media en Chile, el presente estudio ahonda en el cambio de las percepciones y preferencias de la meritocracia en la escuela y la sociedad sobre las preferencias por la redistribución.
 
 :::
 
 ## Antecedentes
 
-::::: columns
-::: {.column width="50%" .content-box-red}
 
-#### A
+#### Sobre meritocracia:
 
-- The original definition of merit is a combination of effort and talent [@young_rise_1958]
-- 2
-- 3
+- La meritocracia se concibe como un sistema donde las recompensas se distribuyen según el esfuerzo y el talento individual [@young_rise_1958]
+- La hipótesis central es que quienes perciban que existe más meritocracia en la escuela y en la sociedad, tenderán a mostrar menores preferencias por el rol del gobierno en la redistribución.
 
 :::
 
-::: {.column width="50%" .content-box-yellow}
+## Operacionalización
 
-#### B
-
-- Adolescents from low-socioeconomic-status families are likelier to have an egalitarian fairness view and consider an equal distribution as fair in a situation with unequal merits [@almas_fairness_2017]
-- 2
-- 3
+- La percepción de meritocracia escolar, asociada a que la inteligencia y el esfuerzo son relevantes para obtener buenas calificaciones en la escuela [@resh_sense_2010].
+- Medición de meritocracia en la sociedad: 
+ 1) La percepción de meritocracia: en qué medida se percibe que los esfuerzos y habilidades son recompensados en el país [@Andersen, Lue Kessing, y Østergaard 2021; @castillo_meritocracia_2019; @mijs_paradox_2019].
+ 2) Las preferencias por la meritocracia: en qué medida la meritocracia es deseada en la sociedad [@castillo_multidimensional_2023].
 
 :::
 :::::
@@ -154,14 +150,15 @@ Aquí mis notas
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
-$H_{1}$
+$H_{1}$  Estudiantes que presentan mayor percepción de meritocracia en la escuela tendrán menor preferencia por la redistribución.
 
-$H_{2}$
+$H_{2}$ Estudiantes que presentan mayor percepción de meritocracia en la sociedad tendrán menor preferencia por la redistribución.
 
-$H_{3}$
+$H_{3}$ Estudiantes que presentan mayor preferencia por la meritocracia en la sociedad tendrán menor preferencia por la redistribución.
 
-$H_{n}$
+$H_{4}$ Estudiantes de educación media tendrán menor preferencia por la redistribución que estudiantes de educación básica.
 
+$H_{5}$ A medida que los/as estudiantes avanzan en su escolarización, se espera que las preferencias por la redistribución disminuyan.
 
 ::: 
 
@@ -170,38 +167,20 @@ $H_{n}$
 ## Datos
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
--   Datos
+-   La base de datos a utilizar corresponde a la encuesta panel “Educación y Meritocracia” (EDUMER), realizada en Chile durante el 2023 y 2024. 
+- En este estudio se evaluaron estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región metropolitana. El N total de respuestas completas es de 902 estudiantes. 
+- La variable dependiente de preferencias redistributivas fue medida a partir de la pregunta “El gobierno de Chile debería hacer algo para reducir las brechas de ingresos entre ricos y pobres”, con una escala likert de 4 categorías desde “Muy en desacuerdo” a “Muy de acuerdo”.
 :::
 
-## Variables
+# Variables
 
-```{r}
-#| label: tbl-desc-dependientes
-#| tbl-cap: "Variables dependientes"
-#| results: asis
-#| echo: false
-
-df<-dfSummary(dependientes,
-               plain.ascii = FALSE,
-               style = "multiline",
-               tmp.img.dir = "/tmp",
-               headings = F,  # encabezado
-               varnumbers = F, # num variable
-               labels.col = T, # etiquetas
-               na.col = F,    # missing
-               graph.col = F, # plot
-               valid.col = T) # n valido
-
-df$Variable <- NULL # delete variable column
-
-print(df)
-```
-
+## ![](images/variables.PNG)
+    
 :::
 
 ## Métodos
 
-- Métodos
+- Análisis cuantitativo mediante modelos de regresión lineal.
 
 
 # Resultados {.xlarge }
